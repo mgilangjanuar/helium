@@ -70,8 +70,9 @@ class App {
         $runFunction        = isset($options['runFunction']) ? $options['runFunction'] : 'action';
         $defaultFunction    = isset($options['defaultFunction']) ? $options['defaultFunction'] : 'index';
 
-        // build url segments
         $url = str_replace(static::$url->path(), '', $_SERVER['REQUEST_URI']);
+
+        // build url segments
         if (stripos($url, '?'))
             $url = substr($url, 0, stripos($url, '?'));
         $urlSegments = explode("/", trim($url, "/"));
@@ -91,7 +92,7 @@ class App {
 
         // handle if $class doesnt have $func
         if (! class_exists($class) || ! method_exists(new $class, $func))
-            return (new \system\BaseController)->notFound();
+            return (new BaseController)->notFound();
 
         // colect roles in rules that controller
         $roles = [];

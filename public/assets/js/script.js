@@ -1,3 +1,4 @@
 $(document).ready(function () {
-    // some custom script here
+    // init install material ripples
+    $.material.init();
 })
