@@ -19,6 +19,11 @@ class Helper {
         return substr(str_shuffle($string), 0, $length);
     }
 
+    public function camelToDashed($string) 
+    {
+        return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $string));
+    }
+
     /**
      * source: http://alanwhipple.com/2011/05/25/php-truncate-string-preserving-html-tags-words/
      *

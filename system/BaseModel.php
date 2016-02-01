@@ -38,9 +38,8 @@ class BaseModel {
     public function validate($datas = [])
     {
         foreach (get_class_methods($this) as $funcRule) {
-            if (substr($funcRule, 0, 4) == 'rule' && $funcRule != 'rules') {
+            if ( stripos($funcRule, 'rule') === 0 && $funcRule != 'rules')
                 call_user_func_array('\Valitron\Validator::addRule', array_unshift($this->$funcRule(), substr($funcRule, 4)));
-            }
         }
 
         if ($datas == null)
@@ -50,9 +49,9 @@ class BaseModel {
         foreach ($this->rules() as $args) {
             call_user_func_array([$validator, 'rule'], $args);
         }
-        if ($validator->validate()) {
-            return true;
-        }
+
+        if ($validator->validate()) return true;
+        
         return $validator->errors();
     }
 

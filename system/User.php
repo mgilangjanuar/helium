@@ -40,8 +40,7 @@ class User {
 
     public function isLoggedIn()
     {
-        if ($this->session->get('user')) return true;
-        return false;
+        return $this->session->get('user') ? true : false;
     }
 
     public function isAdmin()

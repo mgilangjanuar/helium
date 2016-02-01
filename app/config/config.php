@@ -1,11 +1,7 @@
 <?php 
 return [
     'db' => require __DIR__ . '/db.php',
-    'site' => [
-        'defaultController' => 'site',
-        'runFunction' => 'action',
-        'defaultFunction' => 'index'
-    ],
+    'params' => require __DIR__ . '/params.php',
     'assets' => [
         'css' => [
             'public/vendor/bootstrap/dist/css/bootstrap.min.css',
@@ -26,5 +22,12 @@ return [
     'user' => [
         'admins' => []
     ],
-    'params' => require __DIR__ . '/params.php'
+    'route' => [
+        'defaultController' => 'site',
+        'runFunction' => 'action',
+        'defaultFunction' => 'index',
+        'routes' => [
+            '/home' => '\\app\\controllers\\SiteController:actionIndex'
+        ]
+    ],
 ];
