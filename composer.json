@@ -1,5 +1,5 @@
 {
-    "name": "Less PHP Framework",
+    "name": "mgilangjanuar/less-framework",
     "license": "MIT",
     "authors": [
         {
@@ -10,6 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "vlucas/valitron": "^1.2"
     }
 }

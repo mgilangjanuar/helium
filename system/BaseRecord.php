@@ -81,8 +81,8 @@ class BaseRecord extends BaseModel {
         if ($values == null) return false;
 
         foreach ($values[$this->tableName()] as $key => $value) {
-            if (array_key_exists($key, $this->_cols)) {
-                $this->_cols[$key] = $value;
+            if (array_key_exists($key, $this->_cols) || in_array($key, array_keys(get_object_vars($this))) ) {
+                $this->$key = $value;
             }
         }
         return true;
@@ -95,7 +95,9 @@ class BaseRecord extends BaseModel {
 
     public function save($validation = true)
     {
-        if ($this->beforeSave() && ($validation ? $this->isValidate() : true)) {
+        if ($validation && $this->validate() !== true) return false;
+
+        if ($this->beforeSave()) {
             $lastId = $this->db->insert($this->tableName(), $this->_cols, true)->execute();
             $priCol = key( array_slice( $this->_cols, 0, 1, true ));
             $model = static::find()->where([$priCol => $lastId])->one();
@@ -194,28 +196,11 @@ class BaseRecord extends BaseModel {
         return $models;
     }
 
-
-
-    /**
-     * Validation Methods
-     */
-
-    public function ruleUnique($rule)
+    public function validate($datas = [])
     {
-        $errors = [];
-        $model = static::find()->where([$rule[0] => $this->$rule[0]])->one();
-        if ($model != null) {
-            if ($this->isNewRecord) {
-                $errors[] =  explode("\\", static::className())[2] . ' is already exist';
-            } else {
-                foreach ($this->primaryKeys() as $key) {
-                    if ($this->$key != $model->$key) {
-                        $errors[] =  explode("\\", static::className())[2] . ' is already exist';
-                        break;
-                    }
-                }
-            }
-        }
-        return $errors == null ? [] : $errors;
+        if ($datas == null)
+            $datas = array_merge($this->_cols, get_object_vars($this));
+        return parent::validate($datas);
     }
+    
 }
