@@ -39,7 +39,7 @@ class BaseModel {
     {
         foreach (get_class_methods($this) as $funcRule) {
             if (substr($funcRule, 0, 4) == 'rule' && $funcRule != 'rules') {
-                call_user_func_array('\Valitron\Validator::addRule', $this->$funcRule());
+                call_user_func_array('\Valitron\Validator::addRule', array_unshift($this->$funcRule(), substr($funcRule, 4)));
             }
         }
 
