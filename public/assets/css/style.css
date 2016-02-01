@@ -1,0 +1,399 @@
+@font-face {
+    font-family: 'UbuntuMono';
+    src: url('../fonts/Ubuntu_Mono/UbuntuMono-BoldItalic.ttf') format('ttf'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+         url('../fonts/Ubuntu_Mono/UbuntuMono-BoldItalic.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/Orbitron/Orbitron-Regular.ttf') format('ttf'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+         url('../fonts/Orbitron/Orbitron-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+} 
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* source: http://www.bymichaellancaster.com/blog/fluid-iframe-and-images-without-javascript-plugins/ */
+.embed-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%) */
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+.embed-responsive > iframe {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.app-content {
+    margin-top: 20px;
+    margin-bottom: 70px;
+}
+
+.app-content .app-title {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.header {
+    margin-top: -80px;
+    text-align: center;
+    background-color: #ff5722;
+    color: #fff;
+    margin-bottom: 50px;
+    padding: 80px 0 80px;
+}
+
+.header img {
+    margin-top: 6vh;
+    margin-bottom: 12vh;
+    height: 30vh;
+}
+
+.header i.fa {
+    color: #fff;
+}
+
+.header h1 {
+    font-size: 3em;
+    font-family: UbuntuMono;
+}
+
+.modal-short-url {
+    font-family: UbuntuMono;
+}
+
+.header p a,
+.header p a:hover,
+.header p a:visited {
+    color: #000;
+    text-decoration: none;
+    text-shadow: 0 0;
+}
+
+.main-content {
+    margin-left: 50px;
+    margin-top: -100px;
+    display: inline-block;
+    width: 90%;
+}
+
+.main-content > .main-title {
+    padding: 60px 15px;
+    margin-bottom: 60px;
+    color: inherit;
+    text-align: center;
+}
+
+.main-title > h1 {
+    font-size: 3.5em;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.main-title > p {
+    font-size: 1.2em;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.main-title > a, .main-title > div {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+    display: block;
+    margin-bottom: -60px;
+}
+
+
+footer.panel {
+    margin-bottom: 0;
+}
+
+.sidebar-nav > .user-panel {
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: -5px;
+}
+
+.sidebar-nav > .user-panel img {
+    width: 90px;
+    height: auto;
+}
+
+.sidebar-nav > .user-panel p {
+    text-indent: 0px;
+    line-height: 140%;
+}
+
+.sidebar-nav .sidebar-form {
+    padding-left: 18px;
+    padding-right: 18px;
+    margin-bottom: 10px;
+}
+
+.sidebar-nav > li > a > i {
+    margin-left: -20px;
+}
+
+.article {
+    margin-left: 70px;
+    border-left: 3px solid #000;
+    bottom: 0;
+}
+
+.timeline.time {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #fff;
+    background-color: #fff;
+    box-shadow: 5px 5px 5px #000;
+    color: #000;
+            border-radius: 50px; 
+    -webkit-border-radius: 50px;
+       -moz-border-radius: 50px;
+    display: inline-block;
+    z-index: 100;
+    margin-left: -70px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.timeline.time .date { 
+    font-size: 2.8em;
+}
+
+.timeline.time .month { 
+    margin-top: -10px;
+    font-size: 1.5em;
+}
+
+.main-content .arrow-left {
+    width: 0; 
+    height: 0; 
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right:15px solid #009688;
+    margin-left: -28px;
+    display: inline-block;
+}
+
+.main-content header {
+    display: inline-block;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.main-content header h3 {
+    font-size: 1.7em;
+    color: #fff;
+}
+
+.main-content header p {
+    font-size: 0.9em;
+}
+
+.comment-box i.fa-user {
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.animate.slidein-left.triggered {
+       -moz-animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+            animation-duration: 3s;
+       -moz-animation-name: slidein-left;
+    -webkit-animation-name: slidein-left;
+            animation-name: slidein-left;
+}
+
+.animate.arrow-down {
+       -moz-animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+       -moz-animation-name: bounce;
+    -webkit-animation-name: bounce;
+            animation-name: bounce;
+       -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+       -moz-animation-direction: alternate;
+    -webkit-animation-direction: alternate;
+            animation-direction: alternate;
+}
+
+
+/* source: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
+slidein-left animation */
+@keyframes slidein-left {
+    from {
+        margin-left:100%;
+        width:300%
+    } 
+  
+    to {
+        margin-left:0%;
+        width:100%;
+    }
+}
+
+/* move-down animation */
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+#mazkod {
+    transform: rotateY(0deg);
+    transform-style: preserve-3d;
+            transition: transform 0.3s ease-in;
+    -webkit-transition: transform 0.3s ease-in;
+       -moz-transition: transform 0.3s ease-in;
+}
+
+#mazkod:hover {
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+            transition: 0.3s ease-out;
+    -webkit-transition: 0.3s ease-out;
+       -moz-transition: 0.3s ease-out;
+}
+
+.i-slide {
+    position: relative;
+}
+
+.i-slide > img {
+    float: left;
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+.i-slide::after {
+    content: ' ';
+    display: block;
+    clear: both;
+}
+
+.site-login, .site-register {
+    height: 90vh;
+    width: 100%;
+    left: 20vw;
+    display: table;
+    vertical-align: middle;
+}
+
+.site-login > div {
+    width: 400px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.site-register > div {
+    width: 550px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.red {
+    color: red;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.has-warning .help-block {
+    color: red;
+}
+
+.img-profile {
+    width: 120px;
+    height: 120px;
+    border: 3px solid #fff;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px #000;
+    color: #000;
+            border-radius: 60px; 
+    -webkit-border-radius: 60px;
+       -moz-border-radius: 60px;
+    display: inline-block;
+    z-index: 100;
+    text-align: center;
+    margin-top: -100px;
+}
+
+.img-profile > .fa {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.form-input-shortlink > input {
+    display: inline;
+}
+
+.form-input-shorturl .input-group-addon,
+.form-input-shorturl .form-control {
+    font-size: 1.7em;
+    height: 2em;
+    font-family: UbuntuMono;
+}
+
+.form-input-shorturl .form-control {
+    color: #ff5722;
+}
+
+.wrap-format {
+    white-space: pre-wrap;      /* CSS3 */   
+    white-space: -moz-pre-wrap; /* Firefox */    
+    white-space: -pre-wrap;     /* Opera <7 */   
+    white-space: -o-pre-wrap;   /* Opera 7 */    
+    word-wrap: break-word;      /* IE */
+}
+
+@media (max-width:768px){
+    .timeline, .main-content .arrow-left {
+        visibility: hidden;
+    }
+
+    .main-content, .article {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
+    }
+
+    .article {
+        border-left: 0px solid #000;
+    }
+}
+
+@media (max-width:480px){
+    .site-login > div {
+        width: 100vw;
+    }
+}
+
