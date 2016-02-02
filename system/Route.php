@@ -39,6 +39,11 @@ class Route {
         return $this->badRequestException();
     }
 
+    public function addRoute($route, $function)
+    {
+        $this->routes[$route] = $function;
+    }
+
     public function notFoundException()
     {
         return (new BaseController)->notFound();

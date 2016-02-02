@@ -1,2 +1,4 @@
 <?php
-return [];
+return [
+    'formValidation' => '/site/validate-form'
+];

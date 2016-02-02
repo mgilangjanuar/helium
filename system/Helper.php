@@ -19,6 +19,20 @@ class Helper {
         return substr(str_shuffle($string), 0, $length);
     }
 
+    public function formValidation($datas)
+    {
+        $results = [];
+        foreach ($datas as $model => $fields) {
+            $class = '\\app\\models\\' . $model;
+            if (class_exists($class)) {
+                $class = new $class;
+                $class->translateFromJson(json_encode($fields));
+                $results[$model] = $class->validate();
+            }
+        }
+        return json_encode($results);
+    }
+
     public function camelToDashed($string) 
     {
         return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $string));

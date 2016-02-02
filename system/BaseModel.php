@@ -5,6 +5,14 @@ use Valitron\Validator;
 
 class BaseModel {
 
+    public $scenarios;
+
+    public function __construct($options = [])
+    {
+        if (isset($options['scenarios'])) 
+            $this->scenarios = $options['scenarios'];
+    }
+
     public function __get($key)
     {
         $attribute = 'get' . $key;
@@ -35,6 +43,18 @@ class BaseModel {
         return [];
     }
 
+    public function load($values)
+    {
+        if ($values == null) return false;
+
+        foreach ($values as $key => $value) {
+            if (in_array($key, array_keys(get_object_vars($this))) ) {
+                $this->$key = $value;
+            }
+        }
+        return true;
+    }
+
     public function validate($datas = [])
     {
         foreach (get_class_methods($this) as $funcRule) {
@@ -50,9 +70,22 @@ class BaseModel {
             call_user_func_array([$validator, 'rule'], $args);
         }
 
-        if ($validator->validate()) return true;
+        if ($validator->validate()) return null;
         
         return $validator->errors();
+    }
+
+    public function translateFromJson($json)
+    {
+        foreach (json_decode($json, true) as $key => $value) {
+            $this->$key = $value;
+        }
+        return $this;
+    }
+
+    public function translateToJson()
+    {
+        return json_encode($this);
     }
 
 }

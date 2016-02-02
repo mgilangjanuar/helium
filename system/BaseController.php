@@ -35,7 +35,7 @@ class BaseController {
 
     public function redirect($url)
     {
-        return App::redirect($url);
+        return App::$url->redirect($url);
     }
 
     public function registerCss($css)

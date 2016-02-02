@@ -4,9 +4,8 @@ namespace system;
 class BaseRecord extends BaseModel {
 
     public $_cols = [];
-    public $db;
     public $isNewRecord;
-    public $scenarios;
+    private $db;
 
     public function __construct($options = [])
     {
@@ -17,8 +16,7 @@ class BaseRecord extends BaseModel {
         
         $this->db = App::$db;
         $this->isNewRecord = true;
-        if (isset($options['scenarios'])) 
-            $this->scenarios = $options['scenarios'];
+        parent::__construct($options);
     }
 
     public function __get($key)
@@ -95,7 +93,7 @@ class BaseRecord extends BaseModel {
 
     public function save($validation = true)
     {
-        if ($validation && $this->validate() !== true) return false;
+        if ($validation && $this->validate() == null) return false;
 
         if ($this->beforeSave()) {
             $lastId = $this->db->insert($this->tableName(), $this->_cols, true)->execute();
