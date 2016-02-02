@@ -1,7 +1,8 @@
 <?php 
 namespace system;
 
-class Helper {
+class Helper
+{
 
     public function getAlias($value)
     {
@@ -19,11 +20,11 @@ class Helper {
         return substr(str_shuffle($string), 0, $length);
     }
 
-    public function formValidation($datas)
+    public function formValidation($datas, $namespace = '\\app\\models\\')
     {
         $results = [];
         foreach ($datas as $model => $fields) {
-            $class = '\\app\\models\\' . $model;
+            $class = $namespace . $model;
             if (class_exists($class)) {
                 $class = new $class;
                 $class->translateFromJson(json_encode($fields));
@@ -141,4 +142,5 @@ class Helper {
         }
         return $truncate;
     }
+    
 }

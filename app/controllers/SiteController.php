@@ -5,7 +5,8 @@ use system\App;
 use system\BaseController;
 use app\models\Example;
 
-class SiteController extends BaseController {
+class SiteController extends BaseController
+{
 
     public function actionIndex()
     {
@@ -22,4 +23,5 @@ class SiteController extends BaseController {
         echo App::$helper->formValidation(App::$request->post());
         die();
     }
+    
 }

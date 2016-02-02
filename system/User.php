@@ -1,7 +1,8 @@
 <?php 
 namespace system;
 
-class User {
+class User
+{
 
     public $admins = [];
 
@@ -73,4 +74,5 @@ class User {
     {
         return password_verify($pass, $hash);
     }
+    
 }

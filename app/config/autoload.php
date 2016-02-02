@@ -1,6 +1,6 @@
 <?php 
 session_start();
-date_default_timezone_set("Asia/Jakarta");
+date_default_timezone_set('Asia/Jakarta');
 require(__DIR__ . '/../../vendor/autoload.php');
 
 foreach (glob('system/*') as $system) {

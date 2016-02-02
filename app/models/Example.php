@@ -3,7 +3,8 @@ namespace app\models;
 
 use system\BaseModel;
 
-class Example extends BaseModel {
+class Example extends BaseModel
+{
 
     public $name;
     public $email;
@@ -20,8 +21,18 @@ class Example extends BaseModel {
     {
         return [
             ['required', ['name', 'email']],
-            ['alpha', ['name']],
+            ['beruang', ['name']],
             ['email', ['email']]
+        ];
+    }
+
+    public function ruleBeruang()
+    {
+        return [
+            function ()
+            {
+                return $this->name != 'beruang' ? false : true;
+            }, "must 'beruang'"
         ];
     }
     

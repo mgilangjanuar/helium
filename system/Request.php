@@ -1,11 +1,13 @@
 <?php 
 namespace system;
 
-class Request {
+class Request 
+{
+
     public function post($data = null)
     {
         if ($data) {
-            $datas = explode("[", str_replace("]", "", $data));
+            $datas = explode('[', str_replace(']', '', $data));
             if (!isset($_POST[$datas[0]])) return null;
             $result = $_POST[$datas[0]];
             foreach ($datas as $i => $data) {
@@ -20,7 +22,7 @@ class Request {
     public function get($data = null)
     {
         if ($data) {
-            $datas = explode("[", str_replace("]", "", $data));
+            $datas = explode('[', str_replace(']', '', $data));
             if (!isset($_GET[$datas[0]])) return null;
             $result = $_GET[$datas[0]];
             foreach ($datas as $i => $data) {
@@ -31,4 +33,5 @@ class Request {
         }
         return $_GET;
     }
+
 }

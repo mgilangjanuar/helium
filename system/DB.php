@@ -1,7 +1,9 @@
 <?php
 namespace system;
 
-class DB {
+class DB 
+{
+
     public $db;
     public $query;
     public $datas = [];
@@ -163,4 +165,5 @@ class DB {
         return $obj;
         
     }
+    
 }

@@ -3,7 +3,8 @@ namespace system;
 
 use Valitron\Validator;
 
-class BaseModel {
+class BaseModel 
+{
 
     public $scenarios;
 
@@ -38,6 +39,12 @@ class BaseModel {
         return get_called_class();
     }
 
+    public static function realClassName()
+    {
+        $className = explode('\\', static::className());
+        return end($className);
+    }
+
     public function rules()
     {
         return [];
@@ -48,9 +55,8 @@ class BaseModel {
         if ($values == null) return false;
 
         foreach ($values as $key => $value) {
-            if (in_array($key, array_keys(get_object_vars($this))) ) {
+            if ( in_array($key, array_keys(get_object_vars($this))) )
                 $this->$key = $value;
-            }
         }
         return true;
     }
@@ -58,8 +64,11 @@ class BaseModel {
     public function validate($datas = [])
     {
         foreach (get_class_methods($this) as $funcRule) {
-            if ( stripos($funcRule, 'rule') === 0 && $funcRule != 'rules')
-                call_user_func_array('\Valitron\Validator::addRule', array_unshift($this->$funcRule(), substr($funcRule, 4)));
+            if ( stripos($funcRule, 'rule') === 0 && $funcRule != 'rules') {
+                $args = $this->$funcRule();
+                array_unshift($args, strtolower(str_replace('rule', '', $funcRule)));
+                call_user_func_array('\Valitron\Validator::addRule', $args);
+            }
         }
 
         if ($datas == null)

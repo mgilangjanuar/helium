@@ -1,7 +1,9 @@
 <?php 
 namespace system;
 
-class Url {
+class Url 
+{
+
     public function path()
     {
         $path = pathinfo($_SERVER['PHP_SELF'])['dirname'];
@@ -37,4 +39,5 @@ class Url {
         }
         die();
     }
+    
 }

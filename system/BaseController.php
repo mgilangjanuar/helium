@@ -1,7 +1,8 @@
 <?php
 namespace system;
 
-class BaseController {
+class BaseController 
+{
 
     public $title = 'Untitled';
     public $layout = 'app/views/layouts/main.php';
@@ -94,4 +95,5 @@ class BaseController {
         require $this->layout;
         die();
     }
+    
 }

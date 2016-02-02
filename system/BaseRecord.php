@@ -1,7 +1,8 @@
 <?php
 namespace system;
 
-class BaseRecord extends BaseModel {
+class BaseRecord extends BaseModel
+{
 
     public $_cols = [];
     public $isNewRecord;
@@ -78,10 +79,10 @@ class BaseRecord extends BaseModel {
     {
         if ($values == null) return false;
 
-        foreach ($values[$this->tableName()] as $key => $value) {
-            if (array_key_exists($key, $this->_cols) || in_array($key, array_keys(get_object_vars($this))) ) {
+        foreach ($values as $key => $value) {
+            if ( array_key_exists($key, $this->_cols) || 
+                    in_array($key, array_keys(get_object_vars($this))) )
                 $this->$key = $value;
-            }
         }
         return true;
     }

@@ -9,39 +9,46 @@ $this->registerJsFile('public/assets/js/validation-form.js');
     <p class="lead"><?= $model->datas['description'] ?></p>
     <p>
         <a class="btn btn-default" href="http://github.com/mgilangjanuar/less-framework">
-            Fork Me!
+            <i class="fa fa-github"></i> Fork Me!
         </a>
     </p>
 </div>
 
 <div class="row">
+
     <div class="col-sm-4">
         <h2>Hello</h2>
         <div class="well">
+        
             <legend>Example Form</legend>
             <p>
                 <strong>Datas</strong><br />
                 Name: <?= $model->name ?><br />
                 Email: <?= $model->email ?><br />
             </p>
+
             <form action="" method="post" class="form-horizontal use-validation">
                 <input type="hidden" name="_validation" value="<?= App::$url->urlTo(App::$params['formValidation']) ?>">
-                <div class="form-group col-sm-12">
-                    <input name="Example[name]" 
-                           class="form-control floating-label" 
-                           type="text" 
-                           placeholder="Name" />
-                </div>
-                <div class="form-group col-sm-12">
-                    <input name="Example[email]" 
-                           class="form-control floating-label" 
-                           type="text" 
-                           placeholder="Email" />
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <input name="Example[name]" 
+                               class="form-control floating-label" 
+                               type="text" 
+                               placeholder="Name" />
+                    </div>
+                    <div class="form-group">
+                        <input name="Example[email]" 
+                               class="form-control floating-label" 
+                               type="text" 
+                               placeholder="Email" />
+                    </div>
                 </div>
                 <button class="btn btn-primary">Submit</button>
             </form>
+
         </div>
     </div>
+
     <div class="col-sm-4">
         <h2>Hello</h2>
         <p class="text-justify">
@@ -56,6 +63,7 @@ $this->registerJsFile('public/assets/js/validation-form.js');
             <a class="btn btn-default" href="#!">This is link</a>
         </p>
     </div>
+
     <div class="col-sm-4">
         <h2>Hello</h2>
         <p class="text-justify">
@@ -70,4 +78,5 @@ $this->registerJsFile('public/assets/js/validation-form.js');
             <a class="btn btn-default" href="#!">This is link</a>
         </p>
     </div>
+
 </div>

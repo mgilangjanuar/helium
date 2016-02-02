@@ -1,7 +1,8 @@
 <?php 
 namespace system;
 
-class Assets {
+class Assets
+{
 
     public $cssFile = [];
     public $jsFile = [];
@@ -37,4 +38,5 @@ class Assets {
         }
         return $results;
     }
+    
 }

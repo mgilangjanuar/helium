@@ -1,12 +1,13 @@
 <?php 
 namespace system;
 
-class Session {
+class Session
+{
 
     public function get($data = null)
     {
         if ($data) {
-            $datas = explode("[", str_replace("]", "", $data));
+            $datas = explode('[', str_replace(']', '', $data));
             if (!isset($_SESSION[$datas[0]])) return null;
             $result = $_SESSION[$datas[0]];
             foreach ($datas as $i => $data) {
@@ -37,4 +38,5 @@ class Session {
     {
         return isset($_SESSION[$key]);
     }
+    
 }

@@ -1,7 +1,8 @@
 <?php
 namespace system;
 
-class Route {
+class Route
+{
 
     public $url;
     public $routes;
@@ -22,8 +23,6 @@ class Route {
             'user' => isset($config['roles']) && isset($config['roles']['user']) ? $config['roles']['user'] : '@',
             'admin' => isset($config['roles']) && isset($config['roles']['admin']) ? $config['roles']['admin'] : 'admin'
         ];
-
-        $this->run();
     }
 
     public function run()
