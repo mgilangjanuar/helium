@@ -18,12 +18,12 @@ $this->registerJsFile('public/assets/js/validation-form.js');
     <div class="col-sm-4">
         <h2>Hello</h2>
         <div class="well">
+            <legend>Example Form</legend>
             <p>
                 <strong>Datas</strong><br />
                 Name: <?= $model->name ?><br />
                 Email: <?= $model->email ?><br />
             </p>
-            <legend>Example Form</legend>
             <form action="" method="post" class="form-horizontal use-validation">
                 <input type="hidden" name="_validation" value="<?= App::$url->urlTo(App::$params['formValidation']) ?>">
                 <div class="form-group col-sm-12">

@@ -1,0 +1,17 @@
+{
+    "name": "mgilangjanuar/less-framework",
+    "homepage": "https://github.com/mgilangjanuar/less-framework",
+    "authors": [
+        "Muhammad Gilang Januar <mgilangjanuar@gmail.com>"
+    ],
+    "description": "Simple PHP framework with MVC concept.",
+    "main": "",
+    "moduleType": [],
+    "keywords": [
+        "php",
+        "framework",
+        "mvc",
+        "route"
+    ],
+    "license": "MIT"
+}

@@ -5,14 +5,13 @@ return [
     'assets' => [
         'css' => [
             'public/vendor/bootstrap/dist/css/bootstrap.min.css',
-            'public/vendor/bootstrap-material-design/dist/css/roboto.min.css',
-            'public/vendor/bootstrap-material-design/dist/css/material.min.css',
+            'public/vendor/bootstrap-material-design/dist/css/bootstrap-material-design.css',
             'public/vendor/bootstrap-material-design/dist/css/ripples.min.css',
-            'public/vendor/fontawesome/css/font-awesome.min.css',
+            'public/vendor/components-font-awesome/css/font-awesome.min.css',
             'public/assets/css/style.css'
         ],
         'js' => [
-            'public/vendor/jquery/jquery-2.1.4.min.js',
+            'public/vendor/jquery/dist/jquery.min.js',
             'public/vendor/bootstrap/dist/js/bootstrap.min.js',
             'public/vendor/bootstrap-material-design/dist/js/ripples.min.js',
             'public/vendor/bootstrap-material-design/dist/js/material.min.js',
