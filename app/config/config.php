@@ -1,7 +1,6 @@
 <?php 
 return [
     'db' => require __DIR__ . '/db.php',
-    'params' => require __DIR__ . '/params.php',
     'assets' => [
         'css' => [
             'public/vendor/bootstrap/dist/css/bootstrap.min.css',
@@ -20,6 +19,9 @@ return [
     ],
     'user' => [
         'admins' => []
+    ],
+    'params' => [
+        'formValidation' => '/site/validate-form'
     ],
     'route' => [
         'defaultController' => 'site',
