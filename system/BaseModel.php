@@ -66,7 +66,7 @@ class BaseModel
         foreach (get_class_methods($this) as $funcRule) {
             if ( stripos($funcRule, 'rule') === 0 && $funcRule != 'rules') {
                 $args = $this->$funcRule();
-                array_unshift($args, strtolower(str_replace('rule', '', $funcRule)));
+                array_unshift($args, lcfirst(str_replace('rule', '', $funcRule)));
                 call_user_func_array('\Valitron\Validator::addRule', $args);
             }
         }

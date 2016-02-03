@@ -27,11 +27,12 @@ class Route
 
     public function run()
     {
-        $class = '\\app\\controllers\\' . $this->activeController() . 'controller';
-        $func  = $this->runFunction . $this->activeFunction();
-        $args  = explode('/', trim( str_replace($this->activeRoute(), '', $this->url), '/' ));
+        $activeReal = $this->getActiveReal();
+        $class = $activeReal['class'];
+        $func  = $activeReal['func'];
+        $args  = $activeReal['args'];
 
-        if ($this->validate($class, $func) === true)
+        if ($this->validate($class, $func, $args) === true)
             return call_user_func_array( [new $class, $func], $args );
 
         // oops, something wrong! :o
@@ -60,57 +61,55 @@ class Route
 
     public function activeController()
     {
-        foreach ($this->routes as $route => $method) {
-            if (stripos($this->url, $route) === 0) {
-                $className = explode('\\', strtolower( explode(':', $method)[0] ) );
-                return str_replace( 'controller', '', end( $className ) );
-            }
-        }
-
-        $segments = explode('/', trim($this->url, '/'));
-        if (! isset($segments[0]) || $this->url == '/')
-            $segments[0] = $this->defaultController;
-
-        return strtolower( str_replace('-', '', $segments[0]) );
+        $className = explode('\\', strtolower( $this->getActiveReal()['class'] ) );
+        return str_replace( 'controller', '', end( $className ) );
     }
 
     public function activeFunction()
     {
-        foreach ($this->routes as $route => $method) {
-            if (stripos($this->url, $route) === 0) {
-                $funcName = strtolower( explode(':', $method)[1] );
-                return str_replace( $this->runFunction, '', $funcName );
-            }
-        }
-
-        $segments = explode('/', trim($this->url, '/'));
-        if (! isset($segments[1]) )
-            $segments[1] = $this->defaultFunction;
-
-        return strtolower( str_replace('-', '', $segments[1]) );
+        return strtolower( str_replace( $this->runFunction, '', $this->getActiveReal()['func'] ) );
     }
 
     public function activeRoute()
     {
-        foreach ($this->routes as $route => $method) {
-            if (stripos($this->url, $route) === 0) {
-                return $route;
-            }
-        }
-        
-        $segments = explode('/', trim($this->url, '/'));
-        $result = '/';
-        if (isset($segments[0]))
-            $result .= $segments[0];
-        if (isset($segments[1]))
-            $result .= '/' . $segments[1];
-        return $result;
+        return $this->getActiveReal()['route'];
     }
 
-    private function validate($class, $func)
+    private function getActiveReal()
     {
-        // handle if $class not exist or $class doesnt have $func
-        if (! class_exists($class) || ! method_exists(new $class, $func))
+        foreach ($this->routes as $route => $method) {
+            if (stripos($this->url, $route) === 0) {
+                $class = explode(':', $method)[0];
+                $func = explode(':', $method)[1];
+                $args = array_filter( explode( '/', trim( str_replace($route, '', $this->url) ) ) );
+                if (count((new \ReflectionMethod($class, $func))->getParameters()) == count($args))
+                    return [
+                        'route' => $route,
+                        'class' => $class,
+                        'func' => $func,
+                        'args' => $args
+                    ];
+            }
+        }
+
+        $segments = array_filter( explode('/', trim($this->url, '/')) );
+        if (! isset($segments[0]))
+            $segments[0] = $this->defaultController;
+        if (! isset($segments[1]))
+            $segments[1] = $this->defaultFunction;
+        return [
+            'route' => '/' . $segments[0] . '/' . $segments[1],
+            'class' => '\\app\\controllers\\' . str_replace('-', '', $segments[0]) . 'controller',
+            'func' => $this->runFunction . str_replace('-', '', $segments[1]),
+            'args' => array_slice($segments, 2)
+        ];
+    }
+
+    private function validate($class, $func, $args)
+    {
+        // handle if $class not exist or $class doesnt have $func or number of $args not equals
+        if (! class_exists($class) || ! method_exists(new $class, $func) || 
+                count((new \ReflectionMethod($class, $func))->getParameters()) != count($args))
             return $this->notFoundException();
 
         // colect roles in rules that controller
@@ -125,9 +124,9 @@ class Route
         // check roles
         $validate = false;
         if (($roles == null) ||
-            (App::$user->isLoggedIn() && in_array($this->roles['user'], $roles)) ||
-            (! App::$user->isLoggedIn() && in_array($this->roles['guest'], $roles)) ||
-            (App::$user->isLoggedIn() && App::$user->isAdmin() && in_array($this->roles['admin'], $roles)))
+                (App::$user->isLoggedIn() && in_array($this->roles['user'], $roles)) ||
+                (! App::$user->isLoggedIn() && in_array($this->roles['guest'], $roles)) ||
+                (App::$user->isLoggedIn() && App::$user->isAdmin() && in_array($this->roles['admin'], $roles)))
             $validate = true;
 
         // throw to forbidden page if user not in roles

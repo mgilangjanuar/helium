@@ -27,7 +27,7 @@ class Helper
             $class = $namespace . $model;
             if (class_exists($class)) {
                 $class = new $class;
-                $class->translateFromJson(json_encode($fields));
+                $class->load($fields);
                 $results[$model] = $class->validate();
             }
         }
