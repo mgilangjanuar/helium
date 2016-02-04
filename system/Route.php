@@ -6,7 +6,6 @@ class Route
 
     public $url;
     public $routes;
-    public $roles;
     public $defaultController;
     public $defaultFunction;
     public $runFunction;
@@ -18,11 +17,6 @@ class Route
         $this->defaultFunction   = isset($config['defaultFunction']) ? strtolower($config['defaultFunction']) : 'index';
         $this->runFunction       = isset($config['runFunction']) ? strtolower($config['runFunction']) : 'action';
         $this->routes            = isset($config['routes']) ? $config['routes'] : [];
-        $this->roles = [
-            'guest' => isset($config['roles']) && isset($config['roles']['guest']) ? $config['roles']['guest'] : '#',
-            'user' => isset($config['roles']) && isset($config['roles']['user']) ? $config['roles']['user'] : '@',
-            'admin' => isset($config['roles']) && isset($config['roles']['admin']) ? $config['roles']['admin'] : 'admin'
-        ];
     }
 
     public function run()
@@ -114,9 +108,8 @@ class Route
 
         // check permissions
         $rules = (new $class)->rules();
-        if (isset($rules['accessControl']) && AccessControl::validate($rules['accessControl']) == false) {
+        if (isset($rules['accessControl']) && AccessControl::validate($rules['accessControl']) == false)
             return $this->forbiddenException();
-        }
 
         return true;
     }
