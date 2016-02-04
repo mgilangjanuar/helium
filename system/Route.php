@@ -113,8 +113,8 @@ class Route
             return $this->notFoundException();
 
         // check permissions
-        $permissions = (new $class)->rules()['accessControl'];
-        if ($permissions != null && AccessControl::validate($permissions) == false) {
+        $rules = (new $class)->rules();
+        if (isset($rules['accessControl']) && AccessControl::validate($rules['accessControl']) == false) {
             return $this->forbiddenException();
         }
 

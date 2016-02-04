@@ -8,7 +8,7 @@ class User
     
     public function __construct($options = [])
     {
-        $this->model            = isset($options['model']) ? $options['model'] : null;
+        $this->model = isset($options['model']) ? $options['model'] : null;
     }
 
     public function __get($key)
