@@ -112,28 +112,12 @@ class Route
                 count((new \ReflectionMethod($class, $func))->getParameters()) != count($args))
             return $this->notFoundException();
 
-        // colect roles in rules that controller
-        $roles = [];
-        if ((new $class)->rules()['accessControl'] != null ) {
-            foreach ((new $class)->rules()['accessControl'] as $key => $value) {
-                if (in_array($this->activeFunction(), $value))
-                    $roles[] = $key;
-            }
+        // check permissions
+        $permissions = (new $class)->rules()['accessControl'];
+        if ($permissions != null && AccessControl::validate($permissions) == false) {
+            return $this->forbiddenException();
         }
 
-        // check roles
-        $validate = false;
-        if (($roles == null) ||
-                (App::$user->isLoggedIn() && in_array($this->roles['user'], $roles)) ||
-                (! App::$user->isLoggedIn() && in_array($this->roles['guest'], $roles)) ||
-                (App::$user->isLoggedIn() && App::$user->isAdmin() && in_array($this->roles['admin'], $roles)))
-            $validate = true;
-
-        // throw to forbidden page if user not in roles
-        if (! $validate)
-            return $this->forbiddenException();
-
-        // if success
         return true;
     }
 

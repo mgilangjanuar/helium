@@ -23,8 +23,8 @@ $this->registerJsFile('public/assets/js/validation-form.js');
             <legend>Example Form</legend>
             <p>
                 <strong>Datas</strong><br />
-                Name: <?= isset($model->name) ? $model->name : '<span class="text-danger">not set</span>' ?><br />
-                Email: <?= isset($model->email) ? $model->email : '<span class="text-danger">not set</span>' ?><br />
+                Name: <?= $model->name ?><br />
+                Email: <?= $model->email ?><br />
             </p>
 
             <form action="" method="post" class="form-horizontal use-validation">

@@ -21,7 +21,7 @@ class BaseController
 
     public function rules()
     {
-        return null;
+        return [];
     }
 
     public function render($file, $datas = [])
