@@ -9,8 +9,7 @@
     "authors": [
         {
             "name": "Muhammad Gilang Januar",
-            "email": "mgilangjanuar@gmail.com",
-            "website": "http://mgilangj.work"
+            "email": "mgilangjanuar@gmail.com"
         }
     ],
     "minimum-stability": "dev"
