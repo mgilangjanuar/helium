@@ -34,7 +34,7 @@ class App
 
         static::$assets   = new Assets(isset($config['assets']) ? $config['assets'] : []);
 
-        static::$user     = new User(isset($config['user']) ? $config['user'] : []);
+        static::$user     = new User();
 
         static::$url      = new Url();
 

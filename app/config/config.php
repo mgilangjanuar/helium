@@ -17,9 +17,6 @@ return [
             'public/assets/js/script.js',
         ],
     ],
-    'user' => [
-        'admins' => []
-    ],
     'params' => [
         'formValidation' => '/site/validate-form'
     ],

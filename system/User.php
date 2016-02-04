@@ -4,13 +4,6 @@ namespace system;
 class User
 {
 
-    public $model;
-    
-    public function __construct($options = [])
-    {
-        $this->model = isset($options['model']) ? $options['model'] : null;
-    }
-
     public function __get($key)
     {
         $attribute = 'get' . $key;
@@ -23,18 +16,18 @@ class User
 
     public function login($model)
     {
-        App::$session->set('user', serialize($model));
+        App::$session->set('_user', serialize($model));
         return true;
     }
 
     public function logout()
     {
-        return App::$session->clear('user');
+        return App::$session->clear('_user');
     }
 
     public function isLoggedIn()
     {
-        return App::$session->get('user') ? true : false;
+        return App::$session->get('_user') ? true : false;
     }
 
     public function setPassword($pass)
@@ -52,7 +45,7 @@ class User
     
     public function getIdentity()
     {
-        return unserialize(App::$session->get('user'));
+        return unserialize(App::$session->get('_user'));
     }
 
 }
