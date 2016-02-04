@@ -2,7 +2,7 @@
     "name": "mgilangjanuar/helium",
     "description": "Simple PHP framework with MVC concept.",
     "require": {
-        "php": "5.3.0",
+        "php": ">=5.3.0",
         "vlucas/valitron": "^1.2"
     },
     "license": "MIT",

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0bc49bb5d1bb058823cdad1666647025",
-    "content-hash": "ab6c185a683c86bbab3212aa068198be",
+    "hash": "20bcd020ea5398cf657e2d8e271e8f66",
+    "content-hash": "7e6db11e453237710d80377d509e3661",
     "packages": [
         {
             "name": "vlucas/valitron",
@@ -56,7 +56,7 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
