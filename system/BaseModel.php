@@ -55,7 +55,7 @@ class BaseModel
         if ($values == null) return false;
 
         foreach ($values as $key => $value) {
-            if ( in_array($key, array_keys(get_object_vars($this))) )
+            if (array_key_exists($key, get_object_vars($this)))
                 $this->$key = $value;
         }
         return true;

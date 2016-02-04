@@ -8,7 +8,7 @@ $this->registerJsFile('public/assets/js/validation-form.js');
     <h1><?= $model->datas['welcome'] ?></h1>
     <p class="lead"><?= $model->datas['description'] ?></p>
     <p>
-        <a class="btn btn-default" href="http://github.com/mgilangjanuar/less-framework">
+        <a class="btn btn-default" href="http://github.com/mgilangjanuar/helium">
             <i class="fa fa-github"></i> Fork Me!
         </a>
     </p>

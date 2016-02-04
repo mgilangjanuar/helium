@@ -13,7 +13,7 @@ class Example extends BaseModel
     {
         return [
             'welcome' => 'welcome',
-            'description' => 'This is Less Framework. Nothing special.'
+            'description' => 'This is Helium PHP Framework. Nothing special.'
         ];
     }
 

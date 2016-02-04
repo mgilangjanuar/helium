@@ -10,6 +10,7 @@ class BaseRecord extends BaseModel
 
     public function __construct($options = [])
     {
+        parent::__construct($options);
         $this->_cols = array_flip($this->fields());
         foreach ($this->_cols as $key => $value) {
             $this->_cols[$key] = App::$request->post($this->tableName())[$key];
@@ -17,7 +18,6 @@ class BaseRecord extends BaseModel
         
         $this->db = App::$db;
         $this->isNewRecord = true;
-        parent::__construct($options);
     }
 
     public function __get($key)
@@ -81,7 +81,7 @@ class BaseRecord extends BaseModel
 
         foreach ($values as $key => $value) {
             if ( array_key_exists($key, $this->_cols) || 
-                    in_array($key, array_keys(get_object_vars($this))) )
+                    array_key_exists($key, get_object_vars($this)) )
                 $this->$key = $value;
         }
         return true;

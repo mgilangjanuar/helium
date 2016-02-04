@@ -28,7 +28,7 @@ return [
         'runFunction' => 'action',
         'defaultFunction' => 'index',
         'routes' => [
-            '/home' => '\\app\\controllers\\SiteController:actionIndex'
+            '/home' => '\app\controllers\SiteController:actionIndex'
         ]
     ],
 ];

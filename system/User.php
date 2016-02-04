@@ -4,15 +4,11 @@ namespace system;
 class User
 {
 
-    public $admins = [];
-
-    protected $session;
+    public $model;
     
-    public function __construct($options)
+    public function __construct($options = [])
     {
-        if (isset($options['admins']))
-            $this->admins = $options['admins'];
-        $this->session = new Session();
+        $this->model            = isset($options['model']) ? $options['model'] : null;
     }
 
     public function __get($key)
@@ -25,44 +21,23 @@ class User
         }
     }
 
-    public function login($id, $username)
+    public function login($model)
     {
-        $this->session->set('user', [
-            'id' => $id,
-            'username' => $username,
-        ]);
+        App::$session->set('user', serialize($model));
         return true;
     }
 
     public function logout()
     {
-        return $this->session->clear();
+        return App::$session->clear('user');
     }
 
     public function isLoggedIn()
     {
-        return $this->session->get('user') ? true : false;
+        return App::$session->get('user') ? true : false;
     }
 
-    public function isAdmin()
-    {
-        return $this->isLoggedIn() && in_array($this->session->get('user[username]'), $this->admins);
-    }
-
-    public function getId()
-    {
-        if ($this->isLoggedIn())
-            return $this->session->get('user[id]');
-        return false;
-    }
-
-    public function getUsername()
-    {
-        if ($this->isLoggedIn())
-            return $this->session->get('user[username]');
-    }
-
-    public function hashPassword($pass)
+    public function setPassword($pass)
     {
         return password_hash($pass, PASSWORD_DEFAULT, [
             'cost' => 13,
@@ -70,9 +45,14 @@ class User
         ]);
     }
 
-    public function verifyPassword($pass, $hash)
+    public function validatePassword($pass, $hash)
     {
         return password_verify($pass, $hash);
     }
     
+    public function getIdentity()
+    {
+        return unserialize(App::$session->get('user'));
+    }
+
 }

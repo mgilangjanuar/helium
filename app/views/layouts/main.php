@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title><?= $this->title ?> | Less Framework</title>
+    <title><?= $this->title ?> | Helium</title>
     <?php foreach ($this->assets->getCss() as $css): ?>
         <?= $css ?>
     <?php endforeach ?>
@@ -17,7 +17,7 @@
     <footer class="panel">
         <div class="container-fluid">
             <p class="pull-right">
-                <strong>Less Framework</strong> &copy; <?= date('Y') ?>
+                <strong>Helium</strong> &copy; <?= date('Y') ?>
             </p>
         </div>
     </footer>

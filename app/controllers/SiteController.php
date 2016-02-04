@@ -23,5 +23,10 @@ class SiteController extends BaseController
         echo App::$helper->formValidation(App::$request->post());
         die();
     }
+
+    public function actionTest()
+    {
+        var_dump(App::$user->username);
+    }
     
 }

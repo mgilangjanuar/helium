@@ -26,10 +26,8 @@ class Session
 
     public function clear($key = null)
     {
-        if ($key) {
+        if ($key)
             unset($_SESSION[$key]);
-            return true;
-        }
         session_destroy();
         return true;
     }
