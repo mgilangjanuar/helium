@@ -16,7 +16,11 @@ class User
 
     public function login($model)
     {
-        App::$session->set('_user', $model->_cols);
+        if ($model->_cols) {
+            App::$session->set('_user', $model->_cols);
+        } else {
+            App::$session->set('_user', get_object_vars($model));
+        }
         return true;
     }
 
