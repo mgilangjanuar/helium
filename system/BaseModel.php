@@ -6,12 +6,12 @@ use Valitron\Validator;
 class BaseModel 
 {
 
-    public $scenarios;
+    public $scenario;
 
     public function __construct($options = [])
     {
-        if (isset($options['scenarios'])) 
-            $this->scenarios = $options['scenarios'];
+        if (isset($options['scenario'])) 
+            $this->scenario = $options['scenario'];
     }
 
     public function __get($key)

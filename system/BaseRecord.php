@@ -94,7 +94,7 @@ class BaseRecord extends BaseModel
 
     public function save($validation = true)
     {
-        if ($validation && $this->validate() == null) return false;
+        if ($validation && $this->validate() != null) return false;
 
         if ($this->beforeSave()) {
             $lastId = $this->db->insert($this->tableName(), $this->_cols, true)->execute();

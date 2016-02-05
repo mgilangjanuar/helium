@@ -16,7 +16,7 @@ class User
 
     public function login($model)
     {
-        App::$session->set('_user', serialize($model));
+        App::$session->set('_user', $model->_cols);
         return true;
     }
 
@@ -45,7 +45,7 @@ class User
     
     public function getIdentity()
     {
-        return unserialize(App::$session->get('_user'));
+        return App::$session->get('_user');
     }
 
 }
