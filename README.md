@@ -74,7 +74,9 @@ class Example extends \system\BaseRecord
 
 ### Route
 
-```http://yourproject/controller/action```
+```
+http://yourproject/controller/action
+```
 
 For example if you have controller like this
 
@@ -90,7 +92,9 @@ class SiteController extends \system\BaseController
 
 You can access it through this link
 
-```http://yourproject/site/index```
+```
+http://yourproject/site/index
+```
 
 Or you can custom it in config.php (Eg. http://yourproject/home)
 
