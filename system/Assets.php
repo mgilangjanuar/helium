@@ -34,7 +34,7 @@ class Assets
             $results[] = '<script src="' . App::$url->path() . '/' . $js . '"></script>';
         }
         foreach ($this->js as $js) {
-            $results[] = '<script>' . $jsCode . '</script>';
+            $results[] = '<script>' . $js . '</script>';
         }
         return $results;
     }
