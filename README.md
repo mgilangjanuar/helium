@@ -15,7 +15,8 @@ MIT License
 
  - ``` $ git clone https://github.com/mgilangjanuar/helium.git ```
  - ``` $ php composer.phar update ```
- - Setup database (and others) configuration in app/config/config.php
+ - Copy all files and directories in app/environments to app/
+ - Setup database configuration in app/config/db.php and others in app/config/config.php
 
 ## Folder Structure
 
